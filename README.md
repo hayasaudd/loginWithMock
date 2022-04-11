@@ -18,7 +18,7 @@
 - Navigation. 
 - ViewModel. 
 # UI - Details on why and how to use UI Components in your apps - together or separate.
--Animations. 
+- Animations. 
 - Layout.
 - Activities. 
 ## Prototype.
