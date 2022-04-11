@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         animationView.animate().setDuration(1500).alpha(1f).withEndAction {
             val i = Intent(this, LoginActivity::class.java)
             startActivity(i)
-            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
             finish()
         }
     }

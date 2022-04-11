@@ -11,6 +11,8 @@ import com.example.tamaraandroidassignment.data.ResponseItem
 import com.example.tamaraandroidassignment.data.myApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import kotlin.reflect.jvm.internal.impl.descriptors.NotFoundClasses
 
@@ -30,10 +32,11 @@ class viewModel : ViewModel() {
     val status: LiveData<MyApiStatus> = _status
 
 
-    var userIsValid: Boolean = false
+    val _userIsValid = MutableLiveData<Boolean>()
+    val userIsValid: LiveData<Boolean> get() = _userIsValid
 
     private val _errorMassege = MutableLiveData<String>()
-    val errorMassege: LiveData<String> = _errorMassege
+    val errorMassege: LiveData<String> get() = _errorMassege
 
 //    init {
 //        checkUser()
@@ -41,29 +44,25 @@ class viewModel : ViewModel() {
 
     fun checkUser(email: String, userPassword: String) {
 
-        viewModelScope.launch {
 
-            Log.e("TAG", " userISValid whne start the corotine:  ${userIsValid}")
+        viewModelScope.launch {
             _status.value = MyApiStatus.LOADING
             try {
                 Log.e("TAG", " userISValid whne start try scope:  ${userIsValid}")
-
-                val emailAPI =  myApi.retrofitServer.getUser(email)
+                val emailAPI = myApi.retrofitServer.getUser(email)
                 val passAPI = emailAPI.body()?.password
 
                 if (emailAPI.isSuccessful && passAPI!!.equals(userPassword)) {
-                    userIsValid = true
+                    _userIsValid.value = true
                 } else {
-                    userIsValid = false
-                    _errorMassege.value = emailAPI.message().toString()
+                    _userIsValid.value = false
+                    _errorMassege.value = "Password or email is not corecct"
                 }
             } catch (e: Exception) {
-                Log.e("TAG", "getUserInfo:  error${e}")
                 _status.value = MyApiStatus.ERROR
                 _userInfo.value = listOf()
             }
         }
     }
-
 
 }
