@@ -37,8 +37,7 @@
 
 
 - Welcome Page "animation".
-<img width="302" alt="splash" src="https://user-images.githubusercontent.com/92260175/162843390-6b66e1c3-e2dc-440d-8a7a-0df388e61aeb.png">
-
+<img width="301" alt="welcom" src="https://user-images.githubusercontent.com/92260175/162843461-58523a57-1ed9-4dcc-9e8e-ce90705fa0de.png">
 
 
 ## Resources
