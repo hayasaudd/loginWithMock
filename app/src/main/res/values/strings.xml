@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TamaraAndroidAssignment</string>
+    <string name="register">register</string>
+    <string name="don_t_have_any_account">don\'t have any account</string>
+    <string name="forget_password">forget password</string>
+    <string name="signin">signin</string>
+    <string name="signIn">signIn</string>
+    <string name="password">password</string>
+    <string name="email">email</string>
+    <string name="signin_to_continue">signin to continue</string>
+</resources>
