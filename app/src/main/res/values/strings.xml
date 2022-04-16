@@ -4,8 +4,10 @@
     <string name="don_t_have_any_account">don\'t have any account</string>
     <string name="forget_password">forget password</string>
     <string name="signin">signin</string>
-    <string name="signIn">signIn</string>
+    <string name="signIn">Sign In</string>
     <string name="password">password</string>
     <string name="email">email</string>
     <string name="signIn_to_continue">signin to continue</string>
+    <string name="email_address">Email Address</string>
+    <string name="password2">Password</string>
 </resources>
