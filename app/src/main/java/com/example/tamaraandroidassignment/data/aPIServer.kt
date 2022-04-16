@@ -21,18 +21,13 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-interface myApiService {
-    @GET("/users")
-    suspend fun getInfo(): Responsedata
-
+interface MyApiService {
     @GET("/users/{email}")
-    suspend fun getUser(@Path("email")email:String): Response<ResponseItem>
-
-
+    suspend fun getUser(@Path("email") email: String): Response<ResponseItem>
 }
 
-object myApi{
-    val retrofitServer : myApiService by lazy {
-        retrofit.create(myApiService::class.java)
+object MyApi {
+    val RETROFIT_SERVER: MyApiService by lazy {
+        retrofit.create(MyApiService::class.java)
     }
 }

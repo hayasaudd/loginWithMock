@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TamaraAndroidAssignment">
         <activity
-            android:name=".welcomeActivity"
+            android:name=".WelcomePageActivity"
             android:exported="false" />
+
         <activity
             android:name=".LoginActivity"
             android:exported="false" />

@@ -8,16 +8,16 @@ import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import com.example.tamaraandroidassignment.databinding.ActivityLoginBinding
+import java.util.*
 
 
 lateinit var binding: ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
-    private val viewModel: viewModel by viewModels()
-    var passwordValid = false
-    var emailValid = false
+    private val myViewModel: MyViewModel by viewModels()
+    private var passwordValid = false
+    private var emailValid = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,39 +30,39 @@ class LoginActivity : AppCompatActivity() {
         observers()
         //bind log in button
         binding.button.setOnClickListener {
-            Log.e("TAG", " userISValid in click button   ${viewModel.userIsValid}")
-            clickbutton()
+            Log.e("TAG", " userISValid in click button   ${myViewModel.userIsValid}")
+            clickButton()
 
 
         }
 
     }
 
-    fun observers() {
-        viewModel.userIsValid.observe(this, Observer {
+    private fun observers() {
+        myViewModel.userIsValid.observe(this) {
             if (it) {
-                Toast.makeText(this@LoginActivity, "navigat to next page ", Toast.LENGTH_SHORT)
+                Toast.makeText(this@LoginActivity, "navigate to next page ", Toast.LENGTH_SHORT)
                     .show()
-                startActivity(Intent(this@LoginActivity, welcomeActivity::class.java))
+                startActivity(Intent(this@LoginActivity, WelcomePageActivity::class.java))
             }
-        })
+        }
 
-        viewModel.errorMassege.observe(this, Observer {
+        myViewModel.errorMassage.observe(this) {
             Toast.makeText(
                 this@LoginActivity,
                 it,
                 Toast.LENGTH_SHORT
             ).show()
-        })
+        }
 
     }
 
 
     //when the user press the signIn button
-    fun clickbutton() {
+    private fun clickButton() {
         if (emailValid) {
-            viewModel.checkUser(
-                binding.editTextEmail.text.toString().toLowerCase(),
+            myViewModel.checkUser(
+                binding.editTextEmail.text.toString().lowercase(Locale.getDefault()),
                 binding.editTextPassword.text.toString()
             )
 
@@ -77,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.editTextEmail.setOnFocusChangeListener { _, focused ->
             if (!focused) {
-                var checker = validEmail()
+                val checker = validEmail()
                 if (checker != null) {
                     binding.emailContainer.helperText = checker
                     emailValid = false
@@ -103,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
     private fun passwordFocusListener() {
         binding.editTextPassword.setOnFocusChangeListener { _, focused ->
             if (focused) {
-                var checkerPass = validpassword()
+                val checkerPass = validPassword()
                 if (checkerPass != null) {
                     binding.passwordContainer.helperText = checkerPass
                     passwordValid = false
@@ -117,7 +117,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     //function check if the password is valid or not
-    private fun validpassword(): String? {
+    private fun validPassword(): String? {
         val passText = binding.editTextPassword.text.toString()
         if (passText.length < 8) {
             return "Minimum 8 Character Password"
@@ -133,6 +133,4 @@ class LoginActivity : AppCompatActivity() {
         }
         return null
     }
-
-
 }

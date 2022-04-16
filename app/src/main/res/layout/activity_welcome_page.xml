@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/bg">
+    android:background="@drawable/bg"
+    tools:context=".MainActivity">
 
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
         android:layout_width="800dp"
         android:layout_height="800dp"
-        app:lottie_url="REPLACE_JSON_URL"
-        app:lottie_rawRes="@raw/welcome"
+        android:layout_centerInParent="true"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        android:layout_centerInParent="true"/>
+        app:lottie_rawRes="@raw/welcome"
+        app:lottie_url="REPLACE_JSON_URL" />
 
 
 </RelativeLayout>
