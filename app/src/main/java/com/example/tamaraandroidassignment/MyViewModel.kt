@@ -28,7 +28,7 @@ class MyViewModel : ViewModel() {
     var emailValid = false
 
 
-    fun checkUser(email: String, userPassword: String) {
+    fun checkUser(email: String, userPassword: String): Boolean {
 
         viewModelScope.launch {
             _status.value = MyApiStatus.LOADING
@@ -48,7 +48,10 @@ class MyViewModel : ViewModel() {
                 _userInfo.value = listOf()
             }
         }
+        return _userIsValid.value == true
     }
+
+
 
     fun emailFocusListener() {
 
@@ -106,4 +109,6 @@ class MyViewModel : ViewModel() {
         }
         return null
     }
+
+
 }

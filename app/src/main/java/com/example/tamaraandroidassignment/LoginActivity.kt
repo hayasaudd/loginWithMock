@@ -15,20 +15,21 @@ lateinit var binding: ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
     private val myViewModel: MyViewModel by viewModels()
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //bind logIn layout
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        myViewModel.emailFocusListener()
-        myViewModel.passwordFocusListener()
-        observers()
+//        myViewModel.emailFocusListener()
+//        myViewModel.passwordFocusListener()
+//        observers()
+        userRegistration( binding.editTextEmail.text.toString().lowercase(Locale.getDefault()),
+            binding.editTextPassword.text.toString())
         //bind log in button
         binding.button.setOnClickListener {
             Log.e("TAG", " userISValid in click button   ${myViewModel.userIsValid}")
             clickButton()
+
         }
 
     }
@@ -51,18 +52,32 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
-
+/*
+*the input is not valid if...
+* ... email/ password doesn't match
+* ... the password contains less than 8
+* ... the email is not contain"
+*
+* */
     //when the user press the signIn button
-    private fun clickButton() {
-        if (myViewModel.emailValid) {
+   private fun clickButton(): Boolean {
+        return if (myViewModel.emailValid) {
             myViewModel.checkUser(
                 binding.editTextEmail.text.toString().lowercase(Locale.getDefault()),
                 binding.editTextPassword.text.toString()
             )
+            true
 
         } else {
             Toast.makeText(this, "pleas insure your email or password", Toast.LENGTH_SHORT).show()
-
+            false
         }
+    }
+
+    private fun userRegistration(email: String, password: String): Boolean {
+        myViewModel.emailFocusListener()
+        myViewModel.passwordFocusListener()
+        observers()
+        return myViewModel.checkUser(email, password)
     }
 }
