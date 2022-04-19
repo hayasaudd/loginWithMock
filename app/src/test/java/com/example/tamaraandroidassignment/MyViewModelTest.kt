@@ -25,9 +25,7 @@ class MyViewModelTest {
         val result = MyViewModel().checkUser("saeed@gmail.com", "Saeed#1234")
         Truth.assertThat(result).isFalse()}
     }
-
 }
-
 
 @ExperimentalCoroutinesApi
 class CoroutineTestRule(private val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()) : TestWatcher() {

@@ -69,6 +69,7 @@ class MyViewModel : ViewModel() {
         }
     }
 
+
     private fun validEmail(): String? {
         val emailText = binding.editTextEmail.text.toString()
         if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {

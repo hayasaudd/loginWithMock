@@ -59,7 +59,6 @@ class LoginActivity : AppCompatActivity() {
                 binding.editTextPassword.text.toString()
             )
             true
-
         } else {
             Toast.makeText(this, "pleas insure your email or password", Toast.LENGTH_SHORT).show()
             false
