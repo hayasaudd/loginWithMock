@@ -52,7 +52,6 @@ class MyViewModel : ViewModel() {
     }
 
 
-
     fun emailFocusListener() {
 
         binding.editTextEmail.setOnFocusChangeListener { _, focused ->
@@ -109,6 +108,4 @@ class MyViewModel : ViewModel() {
         }
         return null
     }
-
-
 }

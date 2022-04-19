@@ -14,12 +14,10 @@ import org.junit.runner.Description
 //import org.mockito.Mock
 
 
-class MyViewModelTest{
+class MyViewModelTest {
     @ExperimentalCoroutinesApi
     @get:Rule
     var mainCoroutineRule = CoroutineTestRule()
-
-
 
     @Test
     fun `invalid email and password`() {
@@ -33,7 +31,6 @@ class MyViewModelTest{
 
 @ExperimentalCoroutinesApi
 class CoroutineTestRule(private val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()) : TestWatcher() {
-
     override fun starting(description: Description?) {
         super.starting(description)
         Dispatchers.setMain(testDispatcher)
